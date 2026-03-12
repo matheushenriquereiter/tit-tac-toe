@@ -16,9 +16,9 @@ public class Square extends JButton {
         return mark != null;
     }
 
-    public boolean placeMark(Turn turn) {
+    public void placeMark(Turn turn) {
         if (isMarked()) {
-            return false;
+            return;
         }
 
         if (turn == Turn.FIRST_TEAM) {
@@ -28,8 +28,11 @@ public class Square extends JButton {
         if (turn == Turn.SECOND_TEAM) {
             drawMark("src/main/resources/game-icons/second-team.png", turn);
         }
+    }
 
-        return true;
+    public void removeMark() {
+        mark = null;
+        setIcon(null);
     }
 
     private void drawMark(String filename, Turn turn) {

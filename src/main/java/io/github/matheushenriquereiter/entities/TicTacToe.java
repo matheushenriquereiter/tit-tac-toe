@@ -39,6 +39,13 @@ public class TicTacToe extends JFrame {
 
         if (isGameOver()) {
             JOptionPane.showMessageDialog(this, "Jogo acabou: " + turn);
+            return;
+        }
+
+        if (isDraw()) {
+            JOptionPane.showMessageDialog(this, "Jogo empatou");
+            clearGame();
+            return;
         }
 
         if (square.isMarked()) {
@@ -72,5 +79,29 @@ public class TicTacToe extends JFrame {
         }
 
         return false;
+    }
+
+    public boolean isDraw() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                Square square = squares[i][j];
+
+                if (!square.isMarked()) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public void clearGame() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                Square square = squares[i][j];
+
+                square.removeMark();
+            }
+        }
     }
 }
